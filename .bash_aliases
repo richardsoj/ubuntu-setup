@@ -1,0 +1,5 @@
+alias node="node.exe"
+alias mongo="mongo.exe"
+alias mongodump="mongodump.exe"
+alias mongorestore="mongorestore.exe"
+alias redis-cli="redis-cli.exe"
