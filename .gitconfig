@@ -1,0 +1,5 @@
+[credential]
+	helper = /c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe
+[user]
+	name = vietduc01100001
+	email = vietduc01100001@gmail.com
