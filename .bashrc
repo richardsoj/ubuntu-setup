@@ -135,3 +135,6 @@ unexport /c/Users/vietd/AppData/Local/Microsoft/WindowsApps
 
 # Connect to local Docker deamon on Windows.
 export DOCKER_HOST=tcp://localhost:2375
+
+# Use Docker BuildKit
+DOCKER_BUILDKIT=1
