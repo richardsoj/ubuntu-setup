@@ -1,8 +1,7 @@
-### Linux commands ###
 # always list hidden files
 alias ls="ls -A --color"
 
-# make and change directory
+# make and change to directory
 mkcd(){ mkdir -p -- "$1" && cd -P -- "$1"; }
 
 # fast change directories
@@ -26,25 +25,13 @@ fs(){
   fi;
 }
 
-### Windows services ###
-alias node="node.exe"
-alias mongo="mongo.exe"
-alias mongodump="mongodump.exe"
-alias mongorestore="mongorestore.exe"
-alias redis-cli="redis-cli.exe"
-
-### Docker & Docker Compose commands ###
-alias d="docker"
-alias dcp="docker-compose"
-
-# docker image
-alias di="docker image"
-alias dils="docker image ls -a"
-
-# docker container
-alias dc="docker container"
-alias dcls="docker container ls -a"
-
-# docker-compose
-alias up="docker-compose up"
-alias down="docker-compose down"
+# load other aliases
+if [ -f ~/.win_aliases ]; then
+  . ~/.win_aliases
+fi
+if [ -f ~/.git_aliases ]; then
+  . ~/.git_aliases
+fi
+if [ -f ~/.docker_aliases ]; then
+ . ~/.docker_aliases
+fi
