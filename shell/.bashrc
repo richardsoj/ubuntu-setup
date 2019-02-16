@@ -116,6 +116,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
 ### My custom configs. ###
 
 # Enable fzf popup search.
