@@ -116,27 +116,27 @@ if ! shopt -oq posix; then
   fi
 fi
 
+### My custom configs. ###
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-### My custom configs. ###
-
 # Enable fzf popup search.
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Function to remove all PATHs which contain an argument.
-# Example: unexport "node"
-unexport() { export PATH="$( echo $PATH | tr : '\n' | grep -v "$1" | paste -sd: )"; }
+# Example: rmpath "node"
+rmpath() { export PATH="$( echo $PATH | tr : '\n' | grep -v "$1" | paste -sd: )"; }
 
 # Remove Windows PATHs.
-unexport /c/Users/vietd/.windows-build-tools/python27
-unexport /c/Program\ Files/nodejs/node_modules/windows-build-tools/node_modules/.bin
-unexport /c/Users/vietd/AppData/Roaming/nvm
-unexport /c/Program\ Files/NVIDIA\ Corporation/NVIDIA\ NvDLISR
-unexport /c/Program\ Files\ \(x86\)/NVIDIA\ Corporation/PhysX/Common
-unexport /c/Users/vietd/AppData/Local/Microsoft/WindowsApps
+rmpath /c/Users/vietd/.windows-build-tools/python27
+rmpath /c/Program\ Files/nodejs/node_modules/windows-build-tools/node_modules/.bin
+rmpath /c/Users/vietd/AppData/Roaming/nvm
+rmpath /c/Program\ Files/NVIDIA\ Corporation/NVIDIA\ NvDLISR
+rmpath /c/Program\ Files\ \(x86\)/NVIDIA\ Corporation/PhysX/Common
+rmpath /c/Users/vietd/AppData/Local/Microsoft/WindowsApps
 
 # Connect to local Docker deamon on Windows.
 export DOCKER_HOST=tcp://localhost:2375
