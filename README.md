@@ -4,7 +4,7 @@ My setup for a clean new Ubuntu installation
 
 ### What is this?
 
-I created this script to automate the installation of everything I need for my Ubuntu.
+I created this script based on [this repo](https://github.com/mmphego/new-computer) to automate the installation of everything I need for my Ubuntu.
 
 ### How to use?
 
