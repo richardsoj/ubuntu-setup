@@ -1,6 +1,0 @@
-alias g="git"
-alias gs="git status"
-alias glog="git log --oneline"
-alias gaa="git add ."
-alias gca="git add . && git status && git commit"
-alias grb="git rebase -i"
