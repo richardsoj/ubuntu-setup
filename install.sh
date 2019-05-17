@@ -485,6 +485,7 @@ InstallMacOsTheme() {
     gsettings set org.gnome.shell.extensions.dash-to-dock multi-monitor true > /dev/null || true
     gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 40 > /dev/null || true
     gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-shrink true > /dev/null || true
+    gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize' > /dev/null || true
 
     # Personalize Clipboard
     gsettings set org.gnome.shell.extensions.clipboard-indicator notify-on-copy false > /dev/null || true
