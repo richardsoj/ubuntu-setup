@@ -336,6 +336,12 @@ FixFreezing() {
     cecho $green "Fixed shutdown/restart freezing"
 }
 
+InstallUbuntuRestrictedExtras() {
+    cecho $cyan "Installing Ubuntu restricted extras..."
+    Install ubuntu-restricted-extras
+    cecho $green "Installed Ubuntu restricted extras"
+}
+
 InstallDrivers() {
     cecho $cyan "Installing graphics card drivers..."
     sudo ubuntu-drivers autoinstall || true
@@ -433,6 +439,7 @@ InstallMacOsTheme() {
     tar xfz "themes/Mojave-CT-$theme.tar.gz" -C ~/.icons/
     tar xfj themes/OSX-ElCap.tar.bz2 -C ~/.icons/ OSX-ElCap/OSX-ElCap --strip-components 1
     cp "themes/mojave-$theme.jpg" ~/.themes/
+    cp themes/code.svg "$HOME/.icons/Mojave-CT-$theme/apps/128/"
 
     # Install theming packages
     Install gnome-tweak-tool gnome-shell-extensions chrome-gnome-shell
@@ -572,6 +579,7 @@ main() {
     echo_nl
 
     FixFreezing
+    InstallUbuntuRestrictedExtras
     InstallDrivers
     ChangeSettings
     InstallDotfiles
