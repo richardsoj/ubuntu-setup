@@ -265,6 +265,59 @@ InstallIbusBamboo() {
 #                Set up packages                #
 #################################################
 
+SetUpGit() {
+  cecho $cyan "Setting up Git..."
+
+  gusername=''
+  guseremail=''
+
+  while [ -z "${gusername}" ]
+  do
+    echo "Enter username for Git commits:"
+    read -r gusername
+  done
+
+  while [ -z "${guseremail}" ]
+  do
+    echo "Enter email for Git commits:"
+    read -r guseremail
+    if [[ ! "${guseremail}" =~ ^(.+@.+\..+)$ ]]; then
+      guseremail=''
+    fi
+  done
+
+  git config --global user.name "${gusername}"
+  git config --global user.email "${guseremail}"
+  git config --global push.default simple
+
+  cecho $cyan "Generating SSH key..."
+  ssh-keygen -f ~/.ssh/id_rsa -t rsa -N '' -b 4096 -C "${guseremail}" > /dev/null
+  ssh-add ~/.ssh/id_rsa > /dev/null
+  cecho $green "Added SSH key to ssh-agent..."
+
+  cecho $cyan "Adding SSH key to GitHub (via api.github.com)..."
+  cecho $red "This will require you to provide your GitHub username and password"
+
+  ghusername=''
+
+  while [ -z "${ghusername}" ]
+  do
+    echo "Enter GitHub username:"
+    read -r ghusername
+  done
+
+  json="{"\"title"\":"\"$(users)@$(hostname)"\","\"key"\":"\"$(cat ~/.ssh/id_rsa.pub)"\"}"
+  resCode=$(curl -o /dev/null -s -w "%{http_code}" -u "${ghusername}" -d "${json}" https://api.github.com/user/keys)
+  echo $resCode
+  if [[ "${resCode}" -eq 201 ]]; then
+    cecho $green "Added SSH key to GitHub successfully"
+  else
+    cecho $red "SSH key is not added, please do it manually at https://github.com/settings/keys"
+  fi
+
+  cecho $green "Set up Git"
+}
+
 SetUpDocker() {
     cecho $cyan "Setting up Docker..."
     sudo gpasswd -a "$(users)" docker
@@ -394,7 +447,6 @@ InstallDotfiles() {
     cat dotfiles/bash_aliases > ~/.bash_aliases
     cat dotfiles/bash_aliases_git > ~/.bash_aliases_git
     cat dotfiles/bash_aliases_docker > ~/.bash_aliases_docker
-    cat dotfiles/gitconfig > ~/.gitconfig
     cecho $green "Installed dotfiles"
 }
 
@@ -568,6 +620,7 @@ main() {
     cecho $blue "#################################################"
     echo_nl
 
+    SetUpGit
     SetUpDocker
     SetUpVSCode
     UninstallFirefox
