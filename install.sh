@@ -389,6 +389,11 @@ FixFreezing() {
     cecho $green "Fixed shutdown/restart freezing"
 }
 
+IncreaseNumberOfFileWatchers() {
+    echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p || true
+    cecho $green "Increased number of file watchers"
+}
+
 InstallUbuntuRestrictedExtras() {
     cecho $cyan "Installing Ubuntu restricted extras..."
     Install ubuntu-restricted-extras
@@ -632,6 +637,7 @@ main() {
     echo_nl
 
     FixFreezing
+    IncreaseNumberOfFileWatchers
     InstallUbuntuRestrictedExtras
     InstallDrivers
     ChangeSettings
