@@ -107,6 +107,9 @@ UpdatePkgSrcList() {
     # Ibus Bamboo
     sudo add-apt-repository -y ppa:bamboo-engine/ibus-bamboo
 
+    # SimpleScreenRecorder
+    sudo add-apt-repository -y ppa:maarten-baert/simplescreenrecorder
+
     sudo apt-get update -qq
     cecho $green "Added APT repositories"
 }
@@ -259,6 +262,12 @@ InstallIbusBamboo() {
     Install ibus-bamboo
     ibus restart
     cecho $green "Installed Ibus Bamboo"
+}
+
+InstallSimpleScreenRecorder() {
+    echo $cyan "Installing SimpleScreenRecorder..."
+    Install simplescreenrecorder
+    echo $green "Installed SimpleScreenRecorder"
 }
 
 #################################################
@@ -618,6 +627,7 @@ main() {
     InstallStudio3T
     #InstallTelegram
     InstallIbusBamboo
+    InstallSimpleScreenRecorder
 
     echo_nl
     cecho $blue "#################################################"
