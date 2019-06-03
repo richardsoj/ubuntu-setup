@@ -86,7 +86,7 @@ UpdatePkgSrcList() {
     cecho $green "Updated package source list"
 
     cecho $cyan "Installing dependency packages..."
-    Install -q wget curl git gdebi apt-transport-https ca-certificates gnupg-agent software-properties-common
+    Install -q wget curl git gdebi apt-transport-https ca-certificates gnupg-agent software-properties-common default-jre
     cecho $green "Installed dependency packages"
 
     cecho $cyan "Adding APT repositories..."
@@ -244,6 +244,17 @@ InstallStudio3T() {
         cecho $green "Installed Studio 3T"
     else
         cecho $green "Studio 3T is already installed"
+    fi
+}
+
+InstallDBeaver() {
+    if ! which "dbeaver" > /dev/null; then
+        cecho $cyan "Installing DBeaver..."
+        curl -s https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb -o dbeaver-ce_latest_amd64.deb
+        yes Y | sudo gdebi dbeaver-ce_latest_amd64.deb
+        cecho $green "Installed DBeaver"
+    else
+        cecho $green "DBeaver is already installed"
     fi
 }
 
@@ -625,6 +636,7 @@ main() {
     #InstallWebStorm
     InstallChrome
     InstallStudio3T
+    InstallDBeaver
     #InstallTelegram
     InstallIbusBamboo
     InstallSimpleScreenRecorder
