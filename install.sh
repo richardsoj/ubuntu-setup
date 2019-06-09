@@ -542,9 +542,14 @@ InstallMacOsTheme() {
     mkdir -p "$EXT_DIR/$CLIPBOARD"
     unzip -o -qq extensions/clipboard-indicator.zip -d "$EXT_DIR/$CLIPBOARD"
 
+    # Install LockKeys extension
+    LOCKKEYS=$(unzip -c extensions/lockkeys.zip metadata.json | grep uuid | cut -d \" -f4)
+    mkdir -p "$EXT_DIR/$LOCKKEYS"
+    unzip -o -qq extensions/lockkeys.zip -d "$EXT_DIR/$LOCKKEYS"
+
     # Enable extensions
     USER_THEMES="user-theme@gnome-shell-extensions.gcampax.github.com"
-    gsettings set org.gnome.shell enabled-extensions "['$USER_THEMES', '$DASH_TO_DOCK', '$MOVE_CLOCK', '$CLIPBOARD']" > /dev/null || true
+    gsettings set org.gnome.shell enabled-extensions "['$USER_THEMES', '$DASH_TO_DOCK', '$MOVE_CLOCK', '$CLIPBOARD', '$LOCKKEYS']" > /dev/null || true
 
     # Change theme
     gsettings set org.gnome.desktop.interface gtk-theme "Mojave-$theme" > /dev/null || true
