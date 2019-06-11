@@ -258,6 +258,16 @@ InstallDBeaver() {
     fi
 }
 
+InstallRedisDesktopManager() {
+    if [ ! -d "/snap/redis-desktop-manager" ]; then
+        cecho $cyan "Installing Redis Desktop Manager..."
+        sudo snap install redis-desktop-manager
+        cecho $green "Installed Redis Desktop Manager"
+    else
+        cecho $green "Redis Desktop Manager is already installed"
+    fi
+}
+
 InstallTelegram() {
     if [ ! -d "/opt/Telegram" ]; then
         cecho $cyan "Installing Telegram..."
@@ -642,6 +652,7 @@ main() {
     InstallChrome
     InstallStudio3T
     InstallDBeaver
+    InstallRedisDesktopManager
     #InstallTelegram
     InstallIbusBamboo
     InstallSimpleScreenRecorder
