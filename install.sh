@@ -91,6 +91,9 @@ UpdatePkgSrcList() {
 
     cecho $cyan "Adding APT repositories..."
 
+    # FPrint
+    sudo add-apt-repository -y ppa:fingerprint/fprint
+
     # Docker
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
@@ -117,6 +120,16 @@ UpdatePkgSrcList() {
 #################################################
 #               Install packages                #
 #################################################
+
+InstallFPrint() {
+    if ! command -v fprintd-enroll > /dev/null; then
+        cecho $cyan "Installing FPrint..."
+        Install libfprint0 fprint-demo libpam-fprintd
+        cecho $green "Installed FPrint"
+    else
+        cecho $green "FPrint is installed"
+    fi
+}
 
 InstallFzf() {
     if [ ! -d "$HOME/.fzf" ]; then
@@ -641,6 +654,7 @@ main() {
     cecho $blue "#################################################"
     echo_nl
 
+    InstallFPrint
     InstallFzf
     InstallDocker
     InstallDockerCompose
