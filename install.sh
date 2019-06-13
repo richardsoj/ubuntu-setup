@@ -536,7 +536,7 @@ InstallMacOsTheme() {
     if [ ! -d "$HOME/.icons" ]; then mkdir ~/.icons; fi
     rm -rf ~/.themes/* ~/.icons/*
     tar xf "themes/Mojave-$theme.tar.xz" -C ~/.themes/
-    tar xfz "themes/Mojave-CT-$theme.tar.gz" -C ~/.icons/
+    tar xf "themes/Mojave-CT-$theme.tar.gx" -C ~/.icons/
     tar xfj themes/OSX-ElCap.tar.bz2 -C ~/.icons/ OSX-ElCap/OSX-ElCap --strip-components 1
     cp "themes/mojave-$theme.jpg" ~/.themes/
     cp themes/code.svg "$HOME/.icons/Mojave-CT-$theme/apps/128/"
