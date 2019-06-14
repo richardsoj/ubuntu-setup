@@ -539,6 +539,7 @@ InstallMacOsTheme() {
     tar xf "themes/Mojave-CT-$theme.tar.gx" -C ~/.icons/
     tar xfj themes/OSX-ElCap.tar.bz2 -C ~/.icons/ OSX-ElCap/OSX-ElCap --strip-components 1
     cp "themes/mojave-$theme.jpg" ~/.themes/
+    cp "themes/gnome-shell-$theme.css" "$HOME/.themes/Mojave-$theme/gnome-shell/gnome-shell.css"
     cp themes/code.svg "$HOME/.icons/Mojave-CT-$theme/apps/128/"
 
     # Install theming packages
