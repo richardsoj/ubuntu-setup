@@ -142,6 +142,16 @@ InstallFzf() {
     fi
 }
 
+InstallExpect() {
+    if ! command -v expect > /dev/null; then
+        cecho $cyan "Installing expect..."
+        Install expect
+        cecho $green "Installed expect"
+    else
+        cecho $green "expect is already installed"
+    fi
+}
+
 InstallDocker() {
     if ! command -v docker > /dev/null; then
         cecho $cyan "Installing Docker..."
@@ -657,6 +667,7 @@ main() {
 
     InstallFPrint
     InstallFzf
+    InstallExpect
     InstallDocker
     InstallDockerCompose
     InstallNodejs
