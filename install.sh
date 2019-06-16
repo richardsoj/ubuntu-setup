@@ -542,13 +542,12 @@ InstallMacOsTheme() {
     fi
 
     # Copy theme files
-    if [ ! -d "$HOME/.themes" ]; then mkdir ~/.themes; fi
-    if [ ! -d "$HOME/.icons" ]; then mkdir ~/.icons; fi
-    rm -rf ~/.themes/* ~/.icons/*
+    rm -rf ~/.themes ~/.icons
+    mkdir ~/.themes ~/.icons
     tar xf "themes/Mojave-$theme.tar.xz" -C ~/.themes/
     tar xf "themes/Mojave-CT-$theme.tar.gx" -C ~/.icons/
     tar xfj themes/OSX-ElCap.tar.bz2 -C ~/.icons/ OSX-ElCap/OSX-ElCap --strip-components 1
-    cp "themes/mojave-$theme.jpg" ~/.themes/
+    cp "themes/mojave-$theme.jpg" "themes/mojave-$theme-blur.png" ~/.themes/
     cp "themes/gnome-shell-$theme.css" "$HOME/.themes/Mojave-$theme/gnome-shell/gnome-shell.css"
     cp themes/code.svg "$HOME/.icons/Mojave-CT-$theme/apps/128/"
 
@@ -584,6 +583,10 @@ InstallMacOsTheme() {
     # Enable extensions
     USER_THEMES="user-theme@gnome-shell-extensions.gcampax.github.com"
     gsettings set org.gnome.shell enabled-extensions "['$USER_THEMES', '$DASH_TO_DOCK', '$MOVE_CLOCK', '$CLIPBOARD', '$LOCKKEYS']" > /dev/null || true
+
+    # Change login background
+    sudo sed -i "2310s|resource:///org/gnome/shell/theme/noise-texture.png|file:///home/vietduc/.themes/mojave-$theme-blur.png|" /usr/share/gnome-shell/theme/ubuntu.css
+    sudo sed -i '2312i background-size: cover;\nbackground-position: center;' /usr/share/gnome-shell/theme/ubuntu.css
 
     # Change theme
     gsettings set org.gnome.desktop.interface gtk-theme "Mojave-$theme" > /dev/null || true
