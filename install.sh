@@ -603,7 +603,7 @@ InstallMacOsTheme() {
 
     # Change wallpaper
     gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.themes/mojave-$theme.jpg" > /dev/null || true
-    gsettings set org.gnome.desktop.screensaver picture-uri "file://$HOME/.themes/mojave-$theme.jpg" > /dev/null || true
+    gsettings set org.gnome.desktop.screensaver picture-uri "file://$HOME/.themes/mojave-$theme-blur.png" > /dev/null || true
 
     # Personalize Dock
     gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.gnome.Terminal.desktop', 'google-chrome.desktop', 'code.desktop', 'Studio 3T Linux-0.desktop', 'gnome-system-monitor_gnome-system-monitor.desktop']" > /dev/null || true
