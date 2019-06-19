@@ -439,6 +439,7 @@ UninstallFirefox() {
 
 FixFreezing() {
     sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi=force"/' /etc/default/grub
+    sudo sed -i 's/GRUB_TIMEOUT=10/GRUB_TIMEOUT=3/' /etc/default/grub
     cecho $green "Fixed shutdown/restart freezing"
 }
 
