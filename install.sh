@@ -291,6 +291,16 @@ InstallRedisDesktopManager() {
     fi
 }
 
+InstallPostman() {
+    if [ ! -d "/snap/postman" ]; then
+        cecho $cyan "Installing Postman..."
+        sudo snap install postman
+        cecho $green "Installed Postman"
+    else
+        cecho $green "Postman is already installed"
+    fi
+}
+
 InstallTelegram() {
     if [ ! -d "/opt/Telegram" ]; then
         cecho $cyan "Installing Telegram..."
@@ -683,6 +693,7 @@ main() {
     InstallStudio3T
     InstallDBeaver
     InstallRedisDesktopManager
+    InstallPostman
     #InstallTelegram
     InstallIbusBamboo
     InstallSimpleScreenRecorder
