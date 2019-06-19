@@ -294,7 +294,7 @@ InstallRedisDesktopManager() {
 InstallPostman() {
     if [ ! -d "/snap/postman" ]; then
         cecho $cyan "Installing Postman..."
-        sudo snap install postman
+        sudo snap install --candidate postman
         cecho $green "Installed Postman"
     else
         cecho $green "Postman is already installed"
