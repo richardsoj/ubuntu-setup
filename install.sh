@@ -270,17 +270,6 @@ InstallStudio3T() {
     fi
 }
 
-InstallDBeaver() {
-    if ! which "dbeaver" > /dev/null; then
-        cecho $cyan "Installing DBeaver..."
-        curl -s https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb -o dbeaver-ce_latest_amd64.deb
-        yes Y | sudo gdebi dbeaver-ce_latest_amd64.deb
-        cecho $green "Installed DBeaver"
-    else
-        cecho $green "DBeaver is already installed"
-    fi
-}
-
 InstallRedisDesktopManager() {
     if [ ! -d "/snap/redis-desktop-manager" ]; then
         cecho $cyan "Installing Redis Desktop Manager..."
@@ -685,16 +674,15 @@ main() {
     InstallDocker
     InstallDockerCompose
     InstallNodejs
-    InstallMongoDb
+    # InstallMongoDb
     InstallRedis
     InstallVSCode
-    #InstallWebStorm
+    # InstallWebStorm
     InstallChrome
     InstallStudio3T
-    InstallDBeaver
     InstallRedisDesktopManager
     InstallPostman
-    #InstallTelegram
+    # InstallTelegram
     InstallIbusBamboo
     InstallSimpleScreenRecorder
 
