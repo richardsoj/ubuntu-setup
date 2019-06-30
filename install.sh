@@ -607,6 +607,7 @@ InstallMacOsTheme() {
 
     # Personalize Dock
     gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.gnome.Terminal.desktop', 'google-chrome.desktop', 'code.desktop', 'Studio 3T Linux-0.desktop', 'gnome-system-monitor_gnome-system-monitor.desktop']" > /dev/null || true
+    gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true > /dev/null || true
     gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM' > /dev/null || true
     gsettings set org.gnome.shell.extensions.dash-to-dock multi-monitor true > /dev/null || true
     gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 40 > /dev/null || true
