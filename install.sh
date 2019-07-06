@@ -485,8 +485,8 @@ ChangeSettings() {
     gsettings set org.gnome.desktop.privacy remember-recent-files false > /dev/null || true
 
     # Mouse speed
-    gsettings set org.gnome.desktop.peripherals.mouse speed -0.084837545126353775 > /dev/null || true
-    gsettings set org.gnome.desktop.peripherals.touchpad speed -0.42779783393501802 > /dev/null || true
+    gsettings set org.gnome.desktop.peripherals.mouse speed -0.154837545126353775 > /dev/null || true
+    gsettings set org.gnome.desktop.peripherals.touchpad speed -0.43779783393501802 > /dev/null || true
 
     # Power Button action
     gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'nothing' > /dev/null || true
