@@ -217,7 +217,6 @@ InstallRedis() {
         cecho $cyan "Installing Redis..."
         Install redis-server
         sudo sed -i 's/supervised no/supervised systemd/g' /etc/redis/redis.conf
-        sudo systemctl enable redis
         cecho $green "Installed Redis"
     else
         cecho $green "Redis is already installed"
@@ -545,7 +544,7 @@ InstallMacOsTheme() {
     rm -rf ~/.themes ~/.icons
     mkdir ~/.themes ~/.icons
     tar xf "themes/Mojave-$theme.tar.xz" -C ~/.themes/
-    tar xf "themes/Mojave-CT-$theme.tar.gx" -C ~/.icons/
+    tar xf "themes/Mojave-CT-$theme.tar.xz" -C ~/.icons/
     tar xfj themes/OSX-ElCap.tar.bz2 -C ~/.icons/ OSX-ElCap/OSX-ElCap --strip-components 1
     cp "themes/mojave-$theme.jpg" "themes/mojave-$theme-blur.png" ~/.themes/
     cp "themes/gnome-shell-$theme.css" "$HOME/.themes/Mojave-$theme/gnome-shell/gnome-shell.css"
