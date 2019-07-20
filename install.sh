@@ -637,7 +637,7 @@ CleanUp() {
     sudo apt-get update -qq
     sudo apt-get upgrade -y --allow-unauthenticated
     sudo apt-get clean && sudo apt-get autoclean
-    sudo apt-get autoremove --purge
+    yes Y | sudo apt-get autoremove --purge
 
     cecho $green "Reboot system now? [Y/n] "
     read -r response
