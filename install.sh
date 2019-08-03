@@ -113,6 +113,9 @@ UpdatePkgSrcList() {
     # SimpleScreenRecorder
     sudo add-apt-repository -y ppa:maarten-baert/simplescreenrecorder
 
+    # UNetbootin
+    sudo add-apt-repository -y ppa:gezakovacs/ppa
+
     sudo apt-get update -qq
     cecho $green "Added APT repositories"
 }
@@ -310,6 +313,12 @@ InstallSimpleScreenRecorder() {
     echo $cyan "Installing SimpleScreenRecorder..."
     Install simplescreenrecorder
     echo $green "Installed SimpleScreenRecorder"
+}
+
+InstallUNetbootin() {
+    echo $cyan "Installing UNetbootin..."
+    Install unetbootin
+    echo $green "Installed UNetbootin"
 }
 
 #################################################
@@ -685,6 +694,7 @@ main() {
     # InstallTelegram
     InstallIbusBamboo
     InstallSimpleScreenRecorder
+    InstallUNetbootin
 
     echo_nl
     cecho $blue "#################################################"
