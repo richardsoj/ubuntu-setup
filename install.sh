@@ -349,6 +349,8 @@ SetUpGit() {
   git config --global user.name "${gusername}"
   git config --global user.email "${guseremail}"
   git config --global push.default simple
+  git config --global push.followTags true
+  git config --global core.pager ""
 
   cecho $cyan "Generating SSH key..."
   ssh-keygen -f ~/.ssh/id_rsa -t rsa -N '' -b 4096 -C "${guseremail}" > /dev/null
