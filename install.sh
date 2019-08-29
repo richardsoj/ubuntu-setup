@@ -616,7 +616,7 @@ InstallMacOsTheme() {
     gsettings set org.gnome.desktop.screensaver picture-uri "file://$HOME/.themes/mojave-$theme-blur.png" > /dev/null || true
 
     # Personalize Dock
-    gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.gnome.Terminal.desktop', 'google-chrome.desktop', 'code.desktop', 'Studio 3T Linux-0.desktop', 'gnome-system-monitor_gnome-system-monitor.desktop']" > /dev/null || true
+    gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'google-chrome.desktop', 'code.desktop', 'navicat.desktop', 'Studio 3T Linux-0.desktop', 'redis-desktop-manager_rdm.desktop', 'postman_postman.desktop', 'telegramdesktop.desktop', 'chrome-piliedkdooamolekjnpahpcgkjlfbnin-Default.desktop', 'com.teamviewer.TeamViewer.desktop', 'simplescreenrecorder.desktop', 'gnome-system-monitor_gnome-system-monitor.desktop']" > /dev/null || true
     gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true > /dev/null || true
     gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM' > /dev/null || true
     gsettings set org.gnome.shell.extensions.dash-to-dock multi-monitor true > /dev/null || true
@@ -693,7 +693,7 @@ main() {
     InstallStudio3T
     InstallRedisDesktopManager
     InstallPostman
-    # InstallTelegram
+    InstallTelegram
     InstallIbusBamboo
     InstallSimpleScreenRecorder
     InstallUNetbootin
