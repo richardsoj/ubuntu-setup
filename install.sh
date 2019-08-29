@@ -124,37 +124,6 @@ UpdatePkgSrcList() {
 #               Install packages                #
 #################################################
 
-InstallFPrint() {
-    if ! command -v fprintd-enroll > /dev/null; then
-        cecho $cyan "Installing FPrint..."
-        Install libfprint0 fprint-demo libpam-fprintd
-        cecho $green "Installed FPrint"
-    else
-        cecho $green "FPrint is installed"
-    fi
-}
-
-InstallFzf() {
-    if [ ! -d "$HOME/.fzf" ]; then
-        cecho $cyan "Installing fzf..."
-        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-        ~/.fzf/install --all
-        cecho $green "Installed fzf"
-    else
-        cecho $green "fzf is already installed"
-    fi
-}
-
-InstallExpect() {
-    if ! command -v expect > /dev/null; then
-        cecho $cyan "Installing expect..."
-        Install expect
-        cecho $green "Installed expect"
-    else
-        cecho $green "expect is already installed"
-    fi
-}
-
 InstallDocker() {
     if ! command -v docker > /dev/null; then
         cecho $cyan "Installing Docker..."
@@ -512,9 +481,6 @@ ChangeSettings() {
 }
 
 InstallDotfiles() {
-    cat dotfiles/bash_aliases > ~/.bash_aliases
-    cat dotfiles/bash_aliases_git > ~/.bash_aliases_git
-    cat dotfiles/bash_aliases_docker > ~/.bash_aliases_docker
     cecho $green "Installed dotfiles"
 }
 
@@ -636,6 +602,59 @@ InstallMacOsTheme() {
     cecho $green "Installed MacOS theme"
 }
 
+InstallExpect() {
+    if ! command -v expect > /dev/null; then
+        cecho $cyan "Installing expect..."
+        Install expect
+        cecho $green "Installed expect"
+    else
+        cecho $green "expect is already installed"
+    fi
+}
+
+InstallFPrint() {
+    if ! command -v fprintd-enroll > /dev/null; then
+        cecho $cyan "Installing FPrint..."
+        Install libfprint0 fprint-demo libpam-fprintd
+        cecho $green "Installed FPrint"
+    else
+        cecho $green "FPrint is installed"
+    fi
+}
+
+InstallFzf() {
+    if [ ! -d "$HOME/.fzf" ]; then
+        cecho $cyan "Installing fzf..."
+        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+        ~/.fzf/install --all
+        cecho $green "Installed fzf"
+    else
+        cecho $green "fzf is already installed"
+    fi
+}
+
+InstallZsh() {
+    if ! command -v zsh > /dev/null; then
+        cecho $cyan "Installing Zsh..."
+        Install zsh powerline fonts-powerline
+
+        cecho $cyan "Installing Oh My Zsh"
+        git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+        cp dotfiles/zshrc ~/.zshrc
+        sed -i "s/##WHOAMI##/$USER/g" ~/.zshrc
+        source ~/.zshrc
+
+        git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+        ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
+        source ~/.zshrc
+        chsh -s $(which zsh)
+        cecho $green "Installed Zsh"
+    else
+        cecho $green "Zsh is installed"
+    fi
+}
+
 #################################################
 #                   Clean up                    #
 #################################################
@@ -679,9 +698,6 @@ main() {
     cecho $blue "#################################################"
     echo_nl
 
-    InstallFPrint
-    InstallFzf
-    InstallExpect
     InstallDocker
     InstallDockerCompose
     InstallNodejs
@@ -720,9 +736,13 @@ main() {
     InstallUbuntuRestrictedExtras
     InstallDrivers
     ChangeSettings
-    InstallDotfiles
+    # InstallDotfiles
     InstallFonts
     InstallMacOsTheme
+    InstallFPrint
+    InstallExpect
+    # InstallFzf
+    InstallZsh
 
     echo_nl
     cecho $blue "#################################################"
