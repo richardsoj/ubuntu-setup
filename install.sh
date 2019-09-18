@@ -480,10 +480,6 @@ ChangeSettings() {
     cecho $green "Applied personal settings"
 }
 
-InstallDotfiles() {
-    cecho $green "Installed dotfiles"
-}
-
 InstallFonts() {
     ROBOTO_MONO="/usr/share/fonts/truetype/RobotoMono"
     SF_PRO="/usr/share/fonts/opentype/SFPro"
@@ -657,6 +653,18 @@ InstallZsh() {
     fi
 }
 
+InstallTmux() {
+    if ! command -v tmux > /dev/null; then
+        cecho $cyan "Installing tmux..."
+        Install tmux
+        cp dotfiles/.tmux.conf ~/.tmux.conf
+        sudo sed -i "s/Exec=gnome-terminal/Exec=gnome-terminal -- tmux new-session -A -s default/g" /usr/share/applications/org.gnome.Terminal.desktop
+        cecho $green "Installed tmux"
+    else
+        cecho $green "tmux is installed"
+    fi
+}
+
 #################################################
 #                   Clean up                    #
 #################################################
@@ -711,10 +719,10 @@ main() {
     InstallStudio3T
     InstallRedisDesktopManager
     InstallPostman
-    InstallTelegram
+    # InstallTelegram
     InstallIbusBamboo
-    InstallSimpleScreenRecorder
-    InstallUNetbootin
+    # InstallSimpleScreenRecorder
+    # InstallUNetbootin
 
     echo_nl
     cecho $blue "#################################################"
@@ -738,13 +746,13 @@ main() {
     InstallUbuntuRestrictedExtras
     InstallDrivers
     ChangeSettings
-    # InstallDotfiles
     InstallFonts
     InstallMacOsTheme
     InstallFPrint
     InstallExpect
-    # InstallFzf
+    InstallFzf
     InstallZsh
+    InstallTmux
 
     echo_nl
     cecho $blue "#################################################"
