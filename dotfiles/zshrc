@@ -1,20 +1,8 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
-export ZSH="/home/##WHOAMI##/.oh-my-zsh"
+export ZSH="/home/vietduc/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# Set name of the theme to load.
 ZSH_THEME="spaceship"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -64,62 +52,44 @@ ZSH_THEME="spaceship"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  common-aliases
   docker
   docker-compose
   fzf
   git
   git-auto-fetch
-  git-prompt
   kubectl
   npm
-  npx
   nvm
-  ubuntu
+  zsh-autosuggestions
   zsh-syntax-highlighting
 )
 
 # The next line updates PATH for the Google Cloud SDK.
-# if [ -f '/home/##WHOAMI##/google-cloud-sdk/path.zsh.inc' ]; then . '/home/##WHOAMI##/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/vietduc/google-cloud-sdk/path.zsh.inc' ]; then . '/home/vietduc/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-# if [ -f '/home/##WHOAMI##/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/##WHOAMI##/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/home/vietduc/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/vietduc/google-cloud-sdk/completion.zsh.inc'; fi
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# Set personal aliases, overriding those provided by oh-my-zsh libs, plugins, and themes.
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lsa="ls -A"
 alias ..="cd .."
 alias ...="cd ../.."
 
-# Personal functions
+alias grep="grep --color"
+
+alias fd="find . -type d -name"
+alias ff="find . -type f -name"
+
+alias rm="rm -i"
+alias cp="cp -i"
+alias mv="mv -i"
+
+# Personal functions.
 function mkcd(){ mkdir -p -- "$1" && cd -P -- "$1"; }
