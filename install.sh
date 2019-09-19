@@ -519,7 +519,7 @@ InstallMacOsTheme() {
     tar xf "themes/Mojave-$theme.tar.xz" -C ~/.themes/
     tar xf "themes/Mojave-CT-$theme.tar.xz" -C ~/.icons/
     tar xfj themes/OSX-ElCap.tar.bz2 -C ~/.icons/ OSX-ElCap/OSX-ElCap --strip-components 1
-    cp "themes/mojave-$theme.jpg" "themes/mojave-$theme-blur.png" ~/.themes/
+    cp "themes/catalina-$theme.jpg" "themes/catalina-$theme-blur.png" ~/.themes/
     cp "themes/gnome-shell-$theme.css" "$HOME/.themes/Mojave-$theme/gnome-shell/gnome-shell.css"
     cp themes/code.svg "$HOME/.icons/Mojave-CT-$theme/apps/128/"
 
@@ -557,7 +557,7 @@ InstallMacOsTheme() {
     gsettings set org.gnome.shell enabled-extensions "['$USER_THEMES', '$DASH_TO_DOCK', '$MOVE_CLOCK', '$CLIPBOARD', '$LOCKKEYS']" > /dev/null || true
 
     # Change login background
-    sudo sed -i "2310s|resource:///org/gnome/shell/theme/noise-texture.png|file:///home/vietduc/.themes/mojave-$theme-blur.png|" /usr/share/gnome-shell/theme/ubuntu.css
+    sudo sed -i "2310s|resource:///org/gnome/shell/theme/noise-texture.png|file:///home/vietduc/.themes/catalina-$theme-blur.png|" /usr/share/gnome-shell/theme/ubuntu.css
     sudo sed -i '2312i background-size: cover;\nbackground-position: center;' /usr/share/gnome-shell/theme/ubuntu.css
 
     # Change theme
@@ -574,8 +574,8 @@ InstallMacOsTheme() {
     gsettings set org.gnome.desktop.interface monospace-font-name 'Roboto Mono 11' > /dev/null || true
 
     # Change wallpaper
-    gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.themes/mojave-$theme.jpg" > /dev/null || true
-    gsettings set org.gnome.desktop.screensaver picture-uri "file://$HOME/.themes/mojave-$theme-blur.png" > /dev/null || true
+    gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.themes/catalina-$theme.jpg" > /dev/null || true
+    gsettings set org.gnome.desktop.screensaver picture-uri "file://$HOME/.themes/catalina-$theme-blur.png" > /dev/null || true
 
     # Personalize Dock
     gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'google-chrome.desktop', 'code.desktop', 'navicat.desktop', 'Studio 3T Linux-0.desktop', 'redis-desktop-manager_rdm.desktop', 'postman_postman.desktop', 'telegramdesktop.desktop', 'chrome-piliedkdooamolekjnpahpcgkjlfbnin-Default.desktop', 'com.teamviewer.TeamViewer.desktop', 'simplescreenrecorder.desktop', 'gnome-system-monitor_gnome-system-monitor.desktop']" > /dev/null || true
