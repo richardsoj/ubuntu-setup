@@ -502,26 +502,16 @@ InstallChromeExtension() {
 
 InstallMacOsTheme() {
     cecho $cyan "Installing MacOS theme..."
-    echo "Light or Dark? [l/D] "
-    read -r theme
-    if [ -z "${theme}" ]; then
-        theme="dark"
-    fi
-    if [[ "${theme}" =~ ^([dD][aA][rR][kK]|[dD])$ ]]; then
-        theme="dark"
-    else
-        theme="light"
-    fi
 
     # Copy theme files
     rm -rf ~/.themes ~/.icons
     mkdir ~/.themes ~/.icons
-    tar xf "themes/Mojave-$theme.tar.xz" -C ~/.themes/
-    tar xf "themes/Mojave-CT-$theme.tar.xz" -C ~/.icons/
+    tar xf "themes/Mojave-dark.tar.xz" -C ~/.themes/
+    tar xf "themes/Mojave-CT-dark.tar.xz" -C ~/.icons/
     tar xfj themes/OSX-ElCap.tar.bz2 -C ~/.icons/ OSX-ElCap/OSX-ElCap --strip-components 1
-    cp "themes/catalina-$theme.jpg" "themes/catalina-$theme-blur.png" ~/.themes/
-    cp "themes/gnome-shell-$theme.css" "$HOME/.themes/Mojave-$theme/gnome-shell/gnome-shell.css"
-    cp themes/code.svg "$HOME/.icons/Mojave-CT-$theme/apps/128/"
+    cp "themes/catalina-dark.jpg" "themes/catalina-dark-blur.png" ~/.themes/
+    cp "themes/gnome-shell-dark.css" "$HOME/.themes/Mojave-dark/gnome-shell/gnome-shell.css"
+    cp themes/code.svg "$HOME/.icons/Mojave-CT-dark/apps/128/"
 
     # Install theming packages
     Install gnome-tweak-tool gnome-shell-extensions chrome-gnome-shell
@@ -557,15 +547,15 @@ InstallMacOsTheme() {
     gsettings set org.gnome.shell enabled-extensions "['$USER_THEMES', '$DASH_TO_DOCK', '$MOVE_CLOCK', '$CLIPBOARD', '$LOCKKEYS']" > /dev/null || true
 
     # Change login background
-    sudo sed -i "2310s|resource:///org/gnome/shell/theme/noise-texture.png|file:///home/vietduc/.themes/catalina-$theme-blur.png|" /usr/share/gnome-shell/theme/ubuntu.css
+    sudo sed -i "2310s|resource:///org/gnome/shell/theme/noise-texture.png|file:///home/vietduc/.themes/catalina-dark-blur.png|" /usr/share/gnome-shell/theme/ubuntu.css
     sudo sed -i '2312i background-size: cover;\nbackground-position: center;' /usr/share/gnome-shell/theme/ubuntu.css
 
     # Change theme
-    gsettings set org.gnome.desktop.interface gtk-theme "Mojave-$theme" > /dev/null || true
-    gsettings set org.gnome.desktop.interface icon-theme "Mojave-CT-$theme" > /dev/null || true
+    gsettings set org.gnome.desktop.interface gtk-theme "Mojave-dark" > /dev/null || true
+    gsettings set org.gnome.desktop.interface icon-theme "Mojave-CT-dark" > /dev/null || true
     gsettings set org.gnome.desktop.interface cursor-theme 'OSX-ElCap' > /dev/null || true
-    gsettings set org.gnome.shell.extensions.user-theme name "Mojave-$theme" > /dev/null || true
-    gsettings set org.gnome.terminal.legacy theme-variant "$theme" > /dev/null || true
+    gsettings set org.gnome.shell.extensions.user-theme name "Mojave-dark" > /dev/null || true
+    gsettings set org.gnome.terminal.legacy theme-variant "dark" > /dev/null || true
 
     # Change font
     gsettings set org.gnome.desktop.wm.preferences titlebar-font 'SF Pro Display 11' > /dev/null || true
@@ -574,8 +564,8 @@ InstallMacOsTheme() {
     gsettings set org.gnome.desktop.interface monospace-font-name 'Roboto Mono 11' > /dev/null || true
 
     # Change wallpaper
-    gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.themes/catalina-$theme.jpg" > /dev/null || true
-    gsettings set org.gnome.desktop.screensaver picture-uri "file://$HOME/.themes/catalina-$theme-blur.png" > /dev/null || true
+    gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.themes/catalina-dark.jpg" > /dev/null || true
+    gsettings set org.gnome.desktop.screensaver picture-uri "file://$HOME/.themes/catalina-dark-blur.png" > /dev/null || true
 
     # Personalize Dock
     gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'google-chrome.desktop', 'code.desktop', 'navicat.desktop', 'Studio 3T Linux-0.desktop', 'redis-desktop-manager_rdm.desktop', 'postman_postman.desktop', 'telegramdesktop.desktop', 'chrome-piliedkdooamolekjnpahpcgkjlfbnin-Default.desktop', 'com.teamviewer.TeamViewer.desktop', 'simplescreenrecorder.desktop', 'gnome-system-monitor_gnome-system-monitor.desktop']" > /dev/null || true
