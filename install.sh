@@ -532,6 +532,16 @@ InstallMacOsTheme() {
     mkdir -p "$EXT_DIR/$MOVE_CLOCK"
     unzip -o -qq extensions/move-clock.zip -d "$EXT_DIR/$MOVE_CLOCK"
 
+    # Install Panel OSD extension
+    PANEL_OSD=$(unzip -c extensions/panel-osd.zip metadata.json | grep uuid | cut -d \" -f4)
+    mkdir -p "$EXT_DIR/$PANEL_OSD"
+    unzip -o -qq extensions/panel-osd.zip -d "$EXT_DIR/$PANEL_OSD"
+
+    # Install Blyr extension
+    BLYR=$(unzip -c extensions/blyr.zip metadata.json | grep uuid | cut -d \" -f4)
+    mkdir -p "$EXT_DIR/$BLYR"
+    unzip -o -qq extensions/blyr.zip -d "$EXT_DIR/$BLYR"
+
     # Install Clipboard extension
     CLIPBOARD=$(unzip -c extensions/clipboard-indicator.zip metadata.json | grep uuid | cut -d \" -f4)
     mkdir -p "$EXT_DIR/$CLIPBOARD"
@@ -544,7 +554,7 @@ InstallMacOsTheme() {
 
     # Enable extensions
     USER_THEMES="user-theme@gnome-shell-extensions.gcampax.github.com"
-    gsettings set org.gnome.shell enabled-extensions "['$USER_THEMES', '$DASH_TO_DOCK', '$MOVE_CLOCK', '$CLIPBOARD', '$LOCKKEYS']" > /dev/null || true
+    gsettings set org.gnome.shell enabled-extensions "['$USER_THEMES', '$DASH_TO_DOCK', '$MOVE_CLOCK', '$PANEL_OSD', '$BLYR', '$CLIPBOARD', '$LOCKKEYS']" > /dev/null || true
 
     # Change login background
     sudo sed -i "2310s|resource:///org/gnome/shell/theme/noise-texture.png|file:///home/vietduc/.themes/catalina-dark-blur.png|" /usr/share/gnome-shell/theme/ubuntu.css
@@ -574,7 +584,14 @@ InstallMacOsTheme() {
     gsettings set org.gnome.shell.extensions.dash-to-dock multi-monitor true > /dev/null || true
     gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 40 > /dev/null || true
     gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-shrink true > /dev/null || true
+    gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'DEFAULT' > /dev/null || true
     gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize' > /dev/null || true
+
+    # Personalize Panel OSD
+    gsettings set org.gnome.shell.extensions.panel-osd x-pos 100.0 > /dev/null || true
+
+    # Peronsalize Blyr
+    gsettings set org.gnome.shell.extensions.blyr intensity 29.899999999999999 > /dev/null || true
 
     # Personalize Clipboard
     gsettings set org.gnome.shell.extensions.clipboard-indicator notify-on-copy false > /dev/null || true
