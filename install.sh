@@ -349,6 +349,13 @@ SetUpGit() {
   cecho $green "Set up Git"
 }
 
+SetUpNpm() {
+    cecho $cyan "Setting up npm..."
+    npm config set git-tag-version=false
+    npm config set commit-hooks=false
+    cecho $green "npm is set up"
+}
+
 SetUpDocker() {
     cecho $cyan "Setting up Docker..."
     sudo gpasswd -a "$(users)" docker
@@ -738,6 +745,7 @@ main() {
     echo_nl
 
     SetUpGit
+    SetUpNpm
     SetUpDocker
     SetUpVSCode
     UninstallFirefox
